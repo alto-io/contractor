@@ -1,0 +1,25 @@
+{
+    "metadata": [
+        {
+            "id": "1",
+            "name": "Fighter Sword",
+            "description": "For poking.",
+            "image": "Fighter_Sword.png",
+            "strength": 20
+        },
+        {
+            "id": "2",
+            "name": "Fighter Shield",
+            "description": "For blocking.",
+            "image": "Fighter_Shield.png",
+            "defense": 20
+        },
+        {   
+            "id": "3",
+            "name": "Mage Wand",
+            "description": "For casting.",
+            "image": "Mage_Wand.png",
+            "magic": 25
+        }
+    ]    
+}
