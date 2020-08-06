@@ -106,7 +106,9 @@ deployMetadata = (images_hash) => {
 
 saveConfigFile = (metadata_hash) => {
     const config_file = "./temp_metadata/erc1155config.json";
+
     const metadata_config = {
+        "gatewayUrl": "https://gateway.pinata.cloud/ipfs",
         "metadataHash": metadata_hash
     }
 
