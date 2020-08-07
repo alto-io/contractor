@@ -1,25 +1,122 @@
+
 {
+    "contractUri":
+    {
+        "description": "Items created by The CONTRACTOR.", 
+        "external_link": "https://github.com/alto-io/contractor/", 
+        "image": "https://raw.githubusercontent.com/cj1128/emoji-images/master/imgs/1f574.png", 
+        "name": "Contractor ERC1155 Items"
+    },
     "metadata": [
         {
             "id": "1",
             "name": "Fighter Sword",
             "description": "For poking.",
             "image": "Fighter_Sword.png",
-            "strength": 20
+            "attributes": [
+                {
+                  "trait_type": "Base", 
+                  "value": "Sword"
+                }, 
+                {
+                  "trait_type": "Attack", 
+                  "value": 10
+                }, 
+                {
+                  "trait_type": "Speed", 
+                  "value": 0.5
+                }, 
+                {
+                  "display_type": "boost_number", 
+                  "trait_type": "Enchantment", 
+                  "value": 40
+                }, 
+                {
+                  "display_type": "boost_percentage", 
+                  "trait_type": "Chance to Hit", 
+                  "value": 50
+                }, 
+                {
+                  "display_type": "number", 
+                  "trait_type": "Generation", 
+                  "value": 1
+                }
+              ]
         },
         {
             "id": "2",
             "name": "Fighter Shield",
-            "description": "For blocking.",
+            "description": "For blocking. ",
             "image": "Fighter_Shield.png",
-            "defense": 20
+            "attributes": [
+                {
+                  "trait_type": "Base", 
+                  "value": "Shield"
+                }, 
+                {
+                  "trait_type": "Defense", 
+                  "value": 10
+                }, 
+                {
+                  "trait_type": "Armor", 
+                  "value": 0.5
+                }, 
+                {
+                  "display_type": "boost_number", 
+                  "trait_type": "Enchantment", 
+                  "value": 20
+                }, 
+                {
+                  "display_type": "boost_percentage", 
+                  "trait_type": "Chance to Block", 
+                  "value": 30
+                }, 
+                {
+                  "display_type": "number", 
+                  "trait_type": "Generation", 
+                  "value": 1
+                }
+              ]
         },
         {   
             "id": "3",
             "name": "Mage Wand",
             "description": "For casting.",
             "image": "Mage_Wand.png",
-            "magic": 25
+            "attributes": [
+                {
+                  "trait_type": "Base", 
+                  "value": "Sword"
+                }, 
+                {
+                  "trait_type": "Magic", 
+                  "value": 3
+                }, 
+                {
+                  "trait_type": "Cooldown", 
+                  "value": 0.2
+                }, 
+                {
+                  "display_type": "boost_number", 
+                  "trait_type": "Enchantment", 
+                  "value": 20
+                }, 
+                {
+                  "display_type": "boost_percentage", 
+                  "trait_type": "Chance to Hit", 
+                  "value": 40
+                }, 
+                {
+                  "display_type": "number", 
+                  "trait_type": "Generation", 
+                  "value": 1
+                }
+              ]
         }
+
+        
     ]    
+
+   
+
 }

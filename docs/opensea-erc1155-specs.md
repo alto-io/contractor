@@ -8,7 +8,7 @@
 ```
 {
   "description": "Fun and useful accessories for your OpenSea creatures.", 
-  "external_link": "https://github.com/ProjectOpenSea/opensea-erc1155/", 
+  "external_link": "https://github.com/ProjectOpenSea/opensea-erc1155/", <-- link to Website button in opensea webpage
   "image": "https://example.com/image.png", 
   "name": "OpenSea Creature Accessories"
 }
