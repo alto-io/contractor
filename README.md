@@ -1,4 +1,4 @@
-# 🕴 The Contractor
+# 🕴 The CONTRACTOR
 
 Here to help you create your smart contracts!
 
