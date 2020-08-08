@@ -3,13 +3,13 @@ pragma solidity ^0.5.11;
 import "openzeppelin-solidity/contracts/utils/ReentrancyGuard.sol";
 import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-import "./MyCollectible.sol";
+import "./ERC1155Opensea.sol";
 import "./MyFactory.sol";
 import "./ILootBox.sol";
 
 /**
  * @title MyLootBox
- * MyLootBox - a randomized and openable lootbox of MyCollectibles
+ * MyLootBox - a randomized and openable lootbox of ERC1155Opensea
  */
 contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
   using SafeMath for uint256;
@@ -276,7 +276,7 @@ contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
     uint256 _amount
   ) internal returns (uint256) {
     uint256 classId = uint256(_class);
-    MyCollectible nftContract = MyCollectible(nftAddress);
+    ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
     uint256 tokenId = _pickRandomAvailableTokenIdForClass(_class, _amount);
     if (classIsPreminted[classId]) {
       nftContract.safeTransferFrom(
@@ -331,7 +331,7 @@ contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
 
     if (classIsPreminted[classId]) {
       // Make sure owner() owns enough
-      MyCollectible nftContract = MyCollectible(nftAddress);
+      ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
       for (uint256 i = randIndex; i < randIndex + tokenIds.length; i++) {
         uint256 tokenId = tokenIds[i % tokenIds.length];
         if (nftContract.balanceOf(owner(), tokenId) >= _minAmount) {
@@ -358,7 +358,7 @@ contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
    * @dev emit a Warning if we're not approved to transfer nftAddress
    */
   function _checkTokenApproval() internal {
-    MyCollectible nftContract = MyCollectible(nftAddress);
+    ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
     if (!nftContract.isApprovedForAll(owner(), address(this))) {
       emit Warning("Lootbox contract is not approved for trading collectible by:", owner());
     }

@@ -25,9 +25,7 @@ Here to help you create your smart contracts!
 ### 6. Locally deploy the contracts
 
 From inside project directory:
-* Install dependencies with `yarn`.
 * deploy contracts in Ganache with  `yarn sol:deploy`.
-
 
 ### 7. Test on testnets
 

@@ -45,7 +45,7 @@ startDeploy = () => {
             images_hash = response.data.IpfsHash;
 
             console.log("image count: " + imageCount);
-            console.log("images_hash: " + images_hash);
+            console.log("image hash : " + images_hash);
 
             deployMetadata();
 

@@ -1,16 +1,17 @@
 /* Contracts in this test */
 
-const MyCollectible = artifacts.require("../contracts/MyCollectible.sol");
-
+const ERC1155Opensea = artifacts.require("../contracts/ERC1155Opensea.sol");
+const contractDetails = require('../temp_metadata/contracturi.json');
+const contractConfig = require('../temp_metadata/erc1155config.json');
 let _ = '        '
 
-contract("MyCollectible", (accounts) => {
-  const URI_BASE = 'https://creatures-api.opensea.io';
-  const CONTRACT_URI = `${URI_BASE}/contract/opensea-erc1155`;
+contract("ERC1155Opensea", (accounts) => {
+  const CONTRACT_URI = contractConfig.gatewayUrl + "/" + contractConfig.contractUriHash  
+
   let myCollectible;
 
   before(async () => {
-    myCollectible = await MyCollectible.deployed();
+    myCollectible = await ERC1155Opensea.deployed();
   });
 
   // This is all we test for now

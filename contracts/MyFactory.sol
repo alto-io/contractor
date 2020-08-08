@@ -3,7 +3,7 @@ pragma solidity ^0.5.11;
 import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
 import "openzeppelin-solidity/contracts/utils/ReentrancyGuard.sol";
 import "./IFactory.sol";
-import "./MyCollectible.sol";
+import "./ERC1155Opensea.sol";
 import "./Strings.sol";
 
 // WIP
@@ -23,7 +23,7 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
   uint256 constant SUPPLY_PER_TOKEN_ID = UINT256_MAX;
 
   /**
-   * Three different options for minting MyCollectibles (basic, premium, and gold).
+   * Three different options for minting ERC1155Opensea (basic, premium, and gold).
    */
   enum Option {
     Basic,
@@ -89,7 +89,7 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
   ) internal {
     require(_canMint(msg.sender, _option, _amount), "MyFactory#_mint: CANNOT_MINT_MORE");
     uint256 optionId = uint256(_option);
-    MyCollectible nftContract = MyCollectible(nftAddress);
+    ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
     uint256 id = optionToTokenID[optionId];
     if (id == 0) {
       id = nftContract.create(_toAddress, _amount, "", _data);
@@ -118,7 +118,7 @@ contract MyFactory is IFactory, Ownable, ReentrancyGuard {
       return SUPPLY_PER_TOKEN_ID;
     }
 
-    MyCollectible nftContract = MyCollectible(nftAddress);
+    ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
     uint256 currentSupply = nftContract.totalSupply(id);
     return SUPPLY_PER_TOKEN_ID.sub(currentSupply);
   }

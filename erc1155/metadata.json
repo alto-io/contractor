@@ -5,7 +5,8 @@
         "description": "Items created by The CONTRACTOR.", 
         "external_link": "https://github.com/alto-io/contractor/", 
         "image": "https://raw.githubusercontent.com/cj1128/emoji-images/master/imgs/1f574.png", 
-        "name": "Contractor ERC1155 Items"
+        "name": "Contractor ERC1155 Items",
+        "symbol": "ERC1155-CTR"
     },
     "metadata": [
         {
