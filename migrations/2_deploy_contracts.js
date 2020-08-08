@@ -1,6 +1,8 @@
 const ERC1155Opensea = artifacts.require("ERC1155Opensea");
 const MyLootBox = artifacts.require("MyLootBox");
-const ERC721CryptoPizza = artifacts.require("ERC721CryptoPizza")
+const fs = require('fs');
+
+// const ERC721CryptoPizza = artifacts.require("ERC721CryptoPizza")
 
 // Set to false if you only want the collectible to deploy
 const ENABLE_LOOTBOX = true;
@@ -9,7 +11,10 @@ const NFT_ADDRESS_TO_USE = undefined; // e.g. Enjin: '0xfaafdc07907ff5120a76b34b
 // If you want to set preminted token ids for specific classes
 const TOKEN_ID_MAPPING = undefined; // { [key: number]: Array<[tokenId: string]> }
 
-module.exports = function(deployer, network) {
+let ownerAddress;
+let deployNetwork;
+
+module.exports = function(deployer, network, accounts) {
 
   // OpenSea proxy registry addresses for rinkeby and mainnet.
   let proxyRegistryAddress;
@@ -22,12 +27,16 @@ module.exports = function(deployer, network) {
   // get token details
   const erc1155config = require('../temp_metadata/erc1155config.json');
   const contractconfig = require('../temp_metadata/contracturi.json')
-  const baseMetadataUri = erc1155config.gatewayUrl + "/" + erc1155config.metadataHash;
+  const baseMetadataUri = erc1155config.gatewayUrl + "/" + erc1155config.metadataHash + "/";
   const contractUri = erc1155config.gatewayUrl + "/" + erc1155config.contractUriHash;
   const name = contractconfig.name;
   const symbol = contractconfig.symbol;
-  console.log("baseMetadataUri: " + baseMetadataUri)
-  console.log("contractUri: " + contractUri)
+  ownerAddress = accounts[0];
+  deployNetwork = network;
+
+  console.log("baseMetadataUri : " + baseMetadataUri)
+  console.log("contractUri     : " + contractUri)
+  console.log("ownerAddress    : " + ownerAddress)
 
   // ERC721 
   //
@@ -51,13 +60,17 @@ module.exports = function(deployer, network) {
   } else if (NFT_ADDRESS_TO_USE) {
     deployer.deploy(MyLootBox, proxyRegistryAddress, NFT_ADDRESS_TO_USE, {gas: 5000000})
       .then(setupLootbox);
-  } else {
+  } 
+  
+  // default path
+  else {
     deployer.deploy(ERC1155Opensea, proxyRegistryAddress, contractUri, baseMetadataUri, name, symbol, {gas: 5000000})
       .then(() => {
         return deployer.deploy(MyLootBox, proxyRegistryAddress, ERC1155Opensea.address, {gas: 5000000});
       })
       .then(setupLootbox);
   }
+
 };
 
 async function setupLootbox() {
@@ -74,4 +87,27 @@ async function setupLootbox() {
       await lootbox.setTokenIdsForClass(rarity, tokenIds);
     }
   }
+
+  saveContractDeploymentInfo();
+}
+
+function saveContractDeploymentInfo() {
+  const temp_metadata_dir = './temp_metadata';
+  const config_file = temp_metadata_dir + "/deployinfo.json";
+
+
+  const deploy_info = {
+      "ownerAddress": ownerAddress,
+      "ERC1155Address": ERC1155Opensea.address,
+      "FactoryAddress": MyLootBox.address,
+      "network": deployNetwork
+  }
+
+  const st = JSON.stringify(deploy_info, null, 2);
+
+  console.log("------")
+  console.log(st);
+  console.log("------")
+
+  fs.writeFileSync(config_file, st);    
 }

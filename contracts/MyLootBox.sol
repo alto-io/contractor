@@ -180,6 +180,21 @@ contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
   //////
 
   /**
+   * @dev Test mint function for The Contractor. Just for testing, replace eventually with a better reusable one.
+   *      Creates 1 token of id 1, 2 tokens of id 2 and 3 tokens of id 3 for owner account
+   */
+  function contractorTestMint(
+    address _toAddress
+  ) external onlyOwner {
+
+    ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
+    nftContract.create(_toAddress, 1, "", "");
+    nftContract.create(_toAddress, 2, "", "");
+    nftContract.create(_toAddress, 3, "", "");
+  }
+
+
+  /**
    * @dev Open a lootbox manually and send what's inside to _toAddress
    * Convenience method for contract owner.
    */

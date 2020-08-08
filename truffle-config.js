@@ -18,6 +18,19 @@ module.exports = {
       gas: 6721975,
       gasPrice: 1000000000
     },    
+    ganache: {
+      provider() {
+        return new HDWalletProvider(
+          process.env.GANACHE_MNEMONIC,
+          "http://localhost:7545/"
+        );
+      },
+      host: "localhost",
+      port: 7545,
+      network_id: 5777,
+      gas: 6721975,
+      gasPrice: 1000000000
+    },    
     test: {
         provider() {
             return new HDWalletProvider(

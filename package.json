@@ -21,6 +21,9 @@
   "scripts": {
     "ipfs:deploy:erc1155": "node scripts/erc1155_deploy_to_ipfs.js",
     "sol:deploy": "truffle migrate --reset --compile-all",
+    "sol:deploy:rinkeby": "truffle migrate --network rinkeby",
+    "sol:deploy:rinkeby:reset": "truffle migrate --network rinkeby --reset --compile-all",
+    "mint:erc1155": "node scripts/advanced/mint.js",
     "sol:test": "truffle test",
     "clean:dependencies": "rimraf ./**/node_modules",
     "clean:builds": "rimraf ./**/build",
