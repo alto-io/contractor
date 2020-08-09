@@ -1,38 +1,71 @@
 # 🕴 The CONTRACTOR
 
-Here to help you create your smart contracts!
+Here to help you create your smart contracts! 
 
-## 🚀 Getting Started With ERC1155 Example
+The CONTRACTOR can help you:
 
-### 1. Install required software
+* Mint an ERC1155 on Opensea in just 3 easy steps
+* ... and more!
+
+## Required software and accounts
 
  * [Node.js](https://nodejs.org/en/download/)
  * [Yarn](https://yarnpkg.com/getting-started/install)
+ * [Infura](https://infura.io/)
+ * [Pinata](https://pinata.cloud/)
+
+#### [Optional] For Local Testing:
  * [Ganache](https://www.trufflesuite.com/ganache)
+ 
+ ----
+## 🚀 Getting Started With ERC1155 Example
 
-### 2. Fork the repository
+### 1. Fork the repository
 
+Click here to fork and create your own project.
 * [![Fork Contractor](https://img.shields.io/github/forks/alto-io/contractor.svg?style=social&label=Fork%20contractor&maxAge=2592000)](https://GitHub.com/alto-io/contractor/fork)
 
-### 3. Start Ganache
+### 2. Create an .env file with the correct mnemonic and API keys
 
-### 4. Create .env file
+Inside the project directory, create a .env file containing the mnemonics and API keys. You can copy the [env.example](./.env.example).
+```
+GANACHE_MNEMONIC=[not needed for demo]
+TESTNET_MNEMONIC=[mnemonic for wallet with about 2 Rinkeby ETH]
+INFURA_API_KEY=[yourInfuraKey]
+PINATA_API_KEY=[yourPinataAPIKey]
+PINATA_SECRET_API_KEY=[yourPinataSecretAPIKey]
+```
 
-### 5. Deploy the metadata
+### 3. Have 🕴 The CONTRACTOR create your contracts and mint your items 
 
-* `yarn ipfs:deploy:erc1155`
+ * run `yarn demo` inside project directory, then wait a bit ⌛ The script will take a while to deploy the contracts on Rinkeby testnet. 
+ * Once finished, the logs will display the contract details. Copy the `FactoryAddress` to your clipboard
+ * In a browser, go to [https://rinkeby.opensea.io/get-listed/step-two](https://rinkeby.opensea.io/get-listed/step-two) and paste the contract address.
+ * *That's it!* See the items you created on Opensea
 
-### 6. Locally deploy the contracts
+![Rinkeby Opensea Image](./docs/images/rinkeby-opensea.png)
 
-From inside project directory:
-* deploy contracts in Ganache with  `yarn sol:deploy`.
+----
 
-### 7. Test on testnets
+## Creating Your Own Item Specs
 
-### 8. Deploy the frontend on heroku
+* Put all images inside [erc155/images](./erc1155/images) 
+* Define the metadata and contract URI in [erc1155/metadata.json](./erc1155/metadata.json) 
 
-### 9. Airdrop those ERC1155s 🪂
+## Minting Items
 
+ The demo mint parameters are defined in [MyLootBox.sol](./contracts/MyLootBox.sol#L186-L194), which pre-mints 1, 5, and 10 copies of the first 3 tokens respectively to the owner account. 
+ 
+ This is a custom function based on the Opensea Factory implementation of ERC1155, [more info on how to customize it can be found here](https://docs.opensea.io/docs/opensea-erc1155-tutorial).
+
+## Local Testing
+
+For quicker development, you can use [Ganache](https://www.trufflesuite.com/ganache) for local smart contract deployment and testing.
+
+* `yarn sol:deploy` deploys the smart contracts to ganache
+  *  `GANACHE_MNEMONIC` should be defined in the `.env` file
+  *  Make sure Ganache uses http://localhost:7545/ as the rpc url as specified in [truffle-config.js](./truffle-config.js)
+* `yarn sol:test` runs tests in the [test directory](./test)
 
 ## Licenses
 

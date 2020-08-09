@@ -189,8 +189,8 @@ contract MyLootBox is ILootBox, Ownable, Pausable, ReentrancyGuard, MyFactory {
 
     ERC1155Opensea nftContract = ERC1155Opensea(nftAddress);
     nftContract.create(_toAddress, 1, "", "");
-    nftContract.create(_toAddress, 2, "", "");
-    nftContract.create(_toAddress, 3, "", "");
+    nftContract.create(_toAddress, 5, "", "");
+    nftContract.create(_toAddress, 10, "", "");
   }
 
 

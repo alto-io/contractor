@@ -19,6 +19,7 @@
     "node": ">=0.12"
   },
   "scripts": {
+    "demo": "yarn ipfs:deploy:erc1155 && yarn sol:deploy:rinkeby:reset && yarn mint:erc1155",
     "ipfs:deploy:erc1155": "node scripts/erc1155_deploy_to_ipfs.js",
     "sol:deploy": "truffle migrate --reset --compile-all",
     "sol:deploy:rinkeby": "truffle migrate --network rinkeby",

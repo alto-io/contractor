@@ -91,6 +91,9 @@ async function main() {
 
     const result = await factoryContract.methods.contractorTestMint(OWNER_ADDRESS).send({ from: OWNER_ADDRESS });
     console.log("Created. Transaction: " + result.transactionHash)
+    console.log("-------------------")
+    console.log("Mint Finished, press Ctrl+C to exit.")
+
 }
 
 main()
