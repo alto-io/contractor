@@ -50,7 +50,7 @@
     "concurrently": "^4.1.1",
     "dotenv": "^8.2.0",
     "form-data": "^3.0.0",
-    "multi-token-standard": "github:ProjectOpenSea/multi-token-standard",    
+    "multi-token-standard": "github:ProjectOpenSea/multi-token-standard",
     "openzeppelin-solidity": "2.1.3",
     "recursive-fs": "^2.1.0",
     "truffle": "^5.0.2",

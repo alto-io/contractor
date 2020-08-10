@@ -2,7 +2,10 @@ const ERC1155Opensea = artifacts.require("ERC1155Opensea");
 const MyLootBox = artifacts.require("MyLootBox");
 const fs = require('fs');
 
+
 // const ERC721CryptoPizza = artifacts.require("ERC721CryptoPizza")
+// const Tournament = artifacts.require("Tournaments");
+// const Counter = artifacts.require("Counter");
 
 // Set to false if you only want the collectible to deploy
 const ENABLE_LOOTBOX = true;
@@ -13,6 +16,7 @@ const TOKEN_ID_MAPPING = undefined; // { [key: number]: Array<[tokenId: string]>
 
 let ownerAddress;
 let deployNetwork;
+let _ = '        '
 
 module.exports = function(deployer, network, accounts) {
 
@@ -38,22 +42,45 @@ module.exports = function(deployer, network, accounts) {
   console.log("contractUri     : " + contractUri)
   console.log("ownerAddress    : " + ownerAddress)
 
-  // ERC721 
-  //
-  // deployer.then(async () => {
-  //   let _ = "        ";    
-  //   try {
+   // In progress: non-opensea contracts
+   /*
+   deployer.then(async () => {
+    try {
 
-  //       // Deploy CryptoPizza
-  //       await deployer.deploy(ERC721CryptoPizza, baseMetadataUri);
-  //       let contract = await ERC721CryptoPizza.deployed();
-  //       console.log(
-  //         _ + "ERC721CryptoPizza deployed at: " + contract.address
-  //       );
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // });
+      // Deploy CryptoPizza.sol
+      await deployer.deploy(ERC721CryptoPizza, baseMetadataUri);
+        let contract = await ERC721CryptoPizza.deployed();
+        console.log(
+          _ + "ERC721CryptoPizza deployed at: " + contract.address
+        );
+
+      // Deploy Token.sol
+      await deployer.deploy(Token);
+      let token = await Token.deployed();
+      console.log(
+        _ + "Token deployed at: " + token.address
+      );
+
+      // Deploy Tournament.sol
+      await deployer.deploy(Tournament);
+      let tournament = await Tournament.deployed();
+      console.log(
+        _ + "Tournament deployed at: " + tournament.address
+      );
+
+      // Deploy Counter.sol
+      await deployer.deploy(Counter);
+      let counter = await Counter.deployed();
+      console.log(
+        _ + "Counter deployed at: " + counter.address
+      );
+      
+
+    } catch (error) {
+      console.log(error);
+    }
+  });
+  */
 
   if (!ENABLE_LOOTBOX) {
     deployer.deploy(ERC1155Opensea, proxyRegistryAddress, contractUri, baseMetadataUri, name, symbol, {gas: 5000000});
